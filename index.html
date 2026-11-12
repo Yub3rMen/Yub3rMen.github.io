@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An IT and networking portfolio featuring Linux administration, home infrastructure, networking labs, and practical troubleshooting.">
+  <meta name="theme-color" content="#0b1221">
+  <title>IT & Networking Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <style>
+    :root { color-scheme: dark; --bg:#0b1221; --surface:#111c30; --surface-2:#14233a; --stroke:#2b3e56; --text:#edf5ff; --muted:#a8bbd0; --accent:#71e3c7; --accent-2:#92b3ff; --max:1120px; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin:0; color:var(--text); background:var(--bg); font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    a:focus-visible, button:focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
+    .skip-link { position:absolute; left:1rem; top:-5rem; z-index:100; padding:.7rem 1rem; background:var(--accent); color:#061319; border-radius:.4rem; }
+    .skip-link:focus { top:1rem; }
+    .container { width:min(var(--max), calc(100% - 3rem)); margin:0 auto; }
+    .topbar { position:sticky; top:0; z-index:10; background:rgba(11,18,33,.92); backdrop-filter:blur(18px); border-bottom:1px solid rgba(167,191,215,.14); }
+    .nav { min-height:74px; display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+    .brand { font-size:.94rem; font-weight:800; letter-spacing:.09em; display:flex; align-items:center; gap:.65rem; white-space:nowrap; }
+    .brand-mark { color:var(--accent); font-weight:900; letter-spacing:-.12em; font-size:1.3rem; }
+    .nav-links { display:flex; align-items:center; gap:1.8rem; font-size:.91rem; color:var(--muted); font-weight:600; }
+    .nav-links a:hover { color:var(--accent); }
+    .nav-cta { border:1px solid var(--stroke); border-radius:999px; padding:.48rem .9rem; }
+    .nav-cta:hover { border-color:var(--accent); }
+    .hero { position:relative; overflow:hidden; padding:110px 0 85px; }
+    .hero:before { content:""; position:absolute; z-index:-1; right:-12rem; top:-10rem; width:45rem; height:45rem; background:radial-gradient(circle,rgba(64,131,171,.18),transparent 66%); pointer-events:none; }
+    .hero-grid { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(310px,.8fr); gap:3.2rem; align-items:center; }
+    .eyebrow { display:inline-flex; align-items:center; gap:.65rem; color:var(--accent); font-size:.8rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    .eyebrow:before { content:""; width:25px; height:2px; background:var(--accent); }
+    h1, h2, h3, p { margin-top:0; }
+    h1 { font-size:clamp(2.8rem, 5.45vw, 5rem); line-height:1.11; letter-spacing:-.058em; max-width:770px; margin:1.3rem 0 1.3rem; }
+    .gradient { color:var(--accent); }
+    .hero-description { max-width:660px; color:var(--muted); font-size:1.1rem; margin-bottom:2rem; }
+    .actions { display:flex; flex-wrap:wrap; gap:.8rem; }
+    .button { padding:.84rem 1.28rem; border-radius:.65rem; font-weight:800; display:inline-flex; gap:.5rem; align-items:center; justify-content:center; transition:transform .18s,background .18s; }
+    .button:hover { transform:translateY(-2px); }
+    .button-primary { background:var(--accent); color:#081b1f; }
+    .button-secondary { border:1px solid var(--stroke); color:var(--text); background:rgba(255,255,255,.02); }
+    .button-secondary:hover { background:rgba(255,255,255,.06); }
+    .hero-meta { display:flex; gap:1rem; flex-wrap:wrap; color:var(--muted); margin-top:2rem; font-size:.84rem; }
+    .hero-meta span { display:inline-flex; gap:.45rem; align-items:center; }
+    .dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px rgba(113,227,199,.1); }
+    .topology { background:linear-gradient(145deg,rgba(23,44,66,.92),rgba(14,26,44,.85)); border:1px solid var(--stroke); border-radius:1.1rem; padding:1.3rem; box-shadow:0 20px 65px rgba(0,0,0,.2); }
+    .terminal-top { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--stroke); padding-bottom:.85rem; margin-bottom:1.2rem; font-size:.78rem; color:var(--muted); }
+    .lights { display:flex; gap:6px; }
+    .light { width:9px; height:9px; border-radius:50%; background:#597086; }
+    .light:first-child { background:#e18182; } .light:nth-child(2) { background:#e6c56b; } .light:nth-child(3) { background:#70d6b6; }
+    .diagram-item { border:1px solid #39516b; background:#14263d; border-radius:.6rem; padding:.85rem 1rem; display:flex; justify-content:space-between; align-items:center; gap:.7rem; }
+    .diagram-item strong { font-size:.85rem; } .diagram-item small { display:block; color:var(--muted); font-size:.73rem; }
+    .diagram-item code { color:var(--accent); font-size:.74rem; }
+    .diagram-connection { height:26px; border-left:1px dashed #5a8298; margin-left:50%; }
+    .diagram-row { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
+    .terminal-foot { font: .75rem/1.8 ui-monospace,SFMono-Regular,Menlo,monospace; color:#8fafc5; margin-top:1rem; }
+    .terminal-foot span { color:var(--accent); }
+    section { scroll-margin-top:90px; }
+    .section { padding:90px 0; }
+    .section-dark { background:#0e182a; border-top:1px solid rgba(167,191,215,.1); border-bottom:1px solid rgba(167,191,215,.1); }
+    .section-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; margin-bottom:2.3rem; }
+    .section-heading h2 { font-size:clamp(2rem, 3.2vw, 3rem); line-height:1.18; letter-spacing:-.04em; margin:.7rem 0 0; }
+    .section-heading p { max-width:430px; margin:0; color:var(--muted); }
+    .project-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.15rem; }
+    .project-card { background:var(--surface); border:1px solid var(--stroke); border-radius:1rem; padding:1.7rem; min-height:295px; display:flex; flex-direction:column; transition:transform .2s,border-color .2s; }
+    .project-card:hover { transform:translateY(-4px); border-color:#4d7390; }
+    .card-top { display:flex; gap:1rem; justify-content:space-between; align-items:center; margin-bottom:1.2rem; }
+    .project-num { font:800 .8rem ui-monospace,SFMono-Regular,Menlo,monospace; color:var(--accent); }
+    .status { font-size:.71rem; color:#bdd4ed; border:1px solid #47617a; border-radius:30px; padding:.28rem .64rem; letter-spacing:.04em; }
+    .project-card h3 { font-size:1.45rem; letter-spacing:-.025em; margin-bottom:.55rem; }
+    .project-card p { color:var(--muted); font-size:.95rem; margin:0 0 1.3rem; flex:1; }
+    .chips { display:flex; flex-wrap:wrap; gap:.45rem; }
+    .chip { display:inline-block; border:1px solid #375269; color:#bed0e2; background:#182840; padding:.25rem .55rem; border-radius:.35rem; font-size:.72rem; font-weight:700; }
+    .case-study { border:1px solid var(--stroke); border-radius:1.1rem; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; background:var(--surface); }
+    .case-copy { padding:2.5rem; }
+    .case-copy h3 { font-size:2rem; line-height:1.2; margin:.7rem 0 1rem; letter-spacing:-.04em; }
+    .case-copy p { color:var(--muted); }
+    .case-copy dl { display:grid; grid-template-columns:90px 1fr; column-gap:1.2rem; row-gap:.75rem; margin:1.5rem 0 0; font-size:.89rem; }
+    .case-copy dt { color:var(--accent); font-weight:800; }
+    .case-copy dd { margin:0; color:#c9d8e8; }
+    .case-visual { padding:2rem; background:linear-gradient(145deg,#162b43,#0f1e32); border-left:1px solid var(--stroke); display:flex; flex-direction:column; justify-content:center; gap:.55rem; }
+    .node { background:#1b3651; border:1px solid #496984; padding:.75rem 1rem; border-radius:.45rem; text-align:center; font-size:.9rem; font-weight:800; }
+    .node small { display:block; font-weight:400; color:#afc5d7; margin-top:.1rem; }
+    .join { height:21px; width:1px; border-left:1px dashed #7c9db6; align-self:center; }
+    .node-grid { display:grid; grid-template-columns:1fr 1fr; gap:.55rem; }
+    .skills { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+    .skill-box { border-top:2px solid #4b728c; padding-top:1.3rem; }
+    .skill-box h3 { font-size:1.08rem; margin-bottom:.5rem; }
+    .skill-box p { font-size:.92rem; color:var(--muted); margin:0; }
+    .about-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:4rem; }
+    .about-grid h2 { font-size:clamp(2rem,3.4vw,3rem); line-height:1.2; letter-spacing:-.05em; margin:.8rem 0 0; }
+    .about-grid p { color:var(--muted); }
+    .credentials { margin:1.4rem 0 0; display:flex; flex-wrap:wrap; gap:.6rem; }
+    .credential { border:1px solid var(--stroke); padding:.5rem .78rem; border-radius:.5rem; font-size:.78rem; font-weight:800; color:#ccdced; }
+    .contact { border:1px solid #456e77; border-radius:1.2rem; background:linear-gradient(135deg,#14313c,#102237); padding:3rem; display:flex; align-items:center; justify-content:space-between; gap:2rem; }
+    .contact h2 { font-size:clamp(1.8rem,3vw,2.7rem); margin:.6rem 0; letter-spacing:-.04em; }
+    .contact p { color:#b7cbd5; max-width:600px; margin:0; }
+    footer { border-top:1px solid rgba(167,191,215,.12); padding:2rem 0; color:var(--muted); font-size:.8rem; }
+    .footer-content { display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem; }
+    .editor-note { border:1px solid #6d6845; background:#302c18; color:#f0dda2; padding:1rem 1.2rem; border-radius:.7rem; margin-top:1.5rem; font-size:.84rem; }
+    @media (max-width:900px) { .hero { padding:75px 0; } .hero-grid,.case-study,.about-grid { grid-template-columns:1fr; } .hero-grid { gap:2.5rem; } .topology { max-width:520px; } .case-visual { border-left:0; border-top:1px solid var(--stroke); } .about-grid { gap:1.3rem; } }
+    @media (max-width:650px) { .container { width:min(var(--max),calc(100% - 2rem)); } .nav { min-height:64px; } .nav-links { gap:.75rem; font-size:.8rem; } .nav-links a:nth-child(2) { display:none; } .hero { padding:62px 0; } h1 { font-size:2.9rem; } .section { padding:65px 0; } .section-heading { display:block; } .section-heading p { margin-top:1rem; } .project-grid,.skills { grid-template-columns:1fr; } .project-card { min-height:0; } .case-copy,.case-visual { padding:1.5rem; } .contact { display:block; padding:1.7rem; } .contact .button { margin-top:1.4rem; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .project-card,.button { transition:none; } }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="topbar">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Back to top"><span class="brand-mark">&lt;/&gt;</span> IT & Networking <span style="color:#7896af;font-weight:500">/ portfolio</span></a>
+      <div class="nav-links"><a href="#projects">Projects</a><a href="#case-study">Case study</a><a href="#about">About</a><a href="#contact" class="nav-cta">Get in touch</a></div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">IT &amp; NETWORKING PORTFOLIO</span>
+          <h1>Hands-on infrastructure.<br><span class="gradient">Real-world troubleshooting.</span></h1>
+          <p class="hero-description">I work with network-connected physical security systems and build Linux, networking, and self-hosted infrastructure projects in my home lab. This portfolio documents what I've built, tested, and learned.</p>
+          <div class="actions"><a href="#projects" class="button button-primary">View my projects <span aria-hidden="true">↗</span></a><a href="#about" class="button button-secondary">About my background</a></div>
+          <div class="hero-meta"><span><span class="dot"></span> CompTIA Network+ certified</span><span>CCNA studies in progress</span></div>
+        </div>
+        <div class="topology" role="img" aria-label="Illustrative home lab showing a network switch connected to a Linux server and a virtualization host">
+          <div class="terminal-top"><div class="lights"><span class="light"></span><span class="light"></span><span class="light"></span></div><span>home-lab / infrastructure</span><span>● online</span></div>
+          <div class="diagram-item"><div><strong>Network infrastructure</strong><small>Managed switching · VLAN practice</small></div><code>01</code></div>
+          <div class="diagram-connection"></div>
+          <div class="diagram-row">
+            <div class="diagram-item"><div><strong>nexus</strong><small>Ubuntu Server<br>Docker services</small></div></div>
+            <div class="diagram-item"><div><strong>pve1</strong><small>Proxmox<br>Virtualization lab</small></div></div>
+          </div>
+          <div class="terminal-foot"><span>$</span> learning by building<br><span>✓</span> document · test · improve</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="projects">
+      <div class="container">
+        <div class="section-heading"><div><span class="eyebrow">SELECTED WORK</span><h2>Projects from the lab</h2></div><p>Practical examples of system administration, networking, remote access, traffic analysis, and backup workflows.</p></div>
+        <div class="project-grid">
+          <article class="project-card"><div class="card-top"><span class="project-num">PROJECT / 01</span><span class="status">Documenting</span></div><h3>Self-hosted Nextcloud</h3><p>Deployed Nextcloud in Docker on Ubuntu Server, enabled remote access with Tailscale, and configured accounts and mobile photo uploads for multiple users.</p><div class="chips"><span class="chip">Ubuntu</span><span class="chip">Docker</span><span class="chip">Nextcloud</span><span class="chip">Tailscale</span></div></article>
+          <article class="project-card"><div class="card-top"><span class="project-num">PROJECT / 02</span><span class="status">Documenting</span></div><h3>Nexus home infrastructure server</h3><p>Set up a Linux host with storage, file sharing, container management, and supporting services for a home network. Worked through access, permissions, and service troubleshooting.</p><div class="chips"><span class="chip">Linux</span><span class="chip">Samba</span><span class="chip">Portainer</span><span class="chip">DNS</span></div></article>
+          <article class="project-card"><div class="card-top"><span class="project-num">PROJECT / 03</span><span class="status">Lab project</span></div><h3>Switching &amp; VLAN lab</h3><p>Practiced managed switch configuration, VLAN concepts, network discovery, IP addressing, and connectivity testing on physical and simulated networks.</p><div class="chips"><span class="chip">Switching</span><span class="chip">VLANs</span><span class="chip">Packet Tracer</span><span class="chip">TCP/IP</span></div></article>
+          <article class="project-card"><div class="card-top"><span class="project-num">PROJECT / 04</span><span class="status">Lab project</span></div><h3>Packet capture &amp; Wi-Fi analysis</h3><p>Used Kali Linux and Wireshark to examine protocol behavior, explore ARP and wireless beacon traffic, and practice capture-based network troubleshooting.</p><div class="chips"><span class="chip">Kali</span><span class="chip">Wireshark</span><span class="chip">ARP</span><span class="chip">802.11</span></div></article>
+          <article class="project-card"><div class="card-top"><span class="project-num">PROJECT / 05</span><span class="status">Documenting</span></div><h3>Backups &amp; recovery workflows</h3><p>Configured Windows backups to network storage and explored Proxmox backup workflows and UPS monitoring as part of a more resilient home lab.</p><div class="chips"><span class="chip">Veeam</span><span class="chip">Proxmox</span><span class="chip">Samba</span><span class="chip">UPS</span></div></article>
+          <article class="project-card"><div class="card-top"><span class="project-num">PROJECT / 06</span><span class="status">Next project</span></div><h3>CCNA routing &amp; ACL scenarios</h3><p>A future write-up for reproducible Packet Tracer labs covering inter-VLAN routing, OSPF, access control lists, and verification commands.</p><div class="chips"><span class="chip">Cisco IOS</span><span class="chip">OSPF</span><span class="chip">ACLs</span><span class="chip">Planned</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="case-study">
+      <div class="container">
+        <div class="section-heading"><div><span class="eyebrow">FEATURED CASE STUDY</span><h2>From spare hardware to useful services</h2></div><p>An overview of a hands-on project. Detailed evidence and sanitized configurations will be added as documentation is completed.</p></div>
+        <div class="case-study">
+          <div class="case-copy"><span class="eyebrow">NEXUS + NEXTCLOUD</span><h3>Making personal cloud storage available remotely</h3><p><strong style="color:#ecf5ff">The goal:</strong> Host file storage and photo backup without depending on direct public exposure of home services.</p><p><strong style="color:#ecf5ff">The approach:</strong> Install Ubuntu Server, run Nextcloud using containers, and use Tailscale for access from approved devices. Create accounts and configure mobile app access.</p><p><strong style="color:#ecf5ff">What I worked through:</strong> Container administration, remote connectivity, user onboarding, and application troubleshooting.</p>
+            <dl><dt>Platform</dt><dd>Ubuntu Server + Docker</dd><dt>Networking</dt><dd>Tailscale private connectivity</dd><dt>Validation</dt><dd>Device sign-in and mobile upload tests</dd><dt>Next step</dt><dd>Add sanitized screenshots and a tested restore procedure</dd></dl>
+          </div>
+          <div class="case-visual" aria-label="Simplified architecture of private remote access to Nextcloud">
+            <div class="node">Phone / laptop<small>Approved remote client</small></div><div class="join"></div><div class="node">Tailscale<small>Private remote access</small></div><div class="join"></div><div class="node">nexus — Ubuntu Server<small>Self-hosted infrastructure</small></div><div class="join"></div><div class="node-grid"><div class="node">Docker<small>Nextcloud app</small></div><div class="node">Storage<small>User files</small></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="skills">
+      <div class="container"><div class="section-heading"><div><span class="eyebrow">FOCUS AREAS</span><h2>How I apply what I learn</h2></div></div><div class="skills">
+        <div class="skill-box"><h3>Networking &amp; troubleshooting</h3><p>TCP/IP, DHCP, DNS, switching, VLANs, packet captures, and step-by-step fault isolation.</p></div>
+        <div class="skill-box"><h3>Systems &amp; virtualization</h3><p>Ubuntu Server, Proxmox, Docker, file sharing, backups, and remote access.</p></div>
+        <div class="skill-box"><h3>Networked physical security</h3><p>IP cameras, NVRs, access control systems, cabling, PoE, and field troubleshooting.</p></div>
+      </div></div>
+    </section>
+
+    <section class="section" id="about"><div class="container about-grid"><div><span class="eyebrow">A LITTLE ABOUT ME</span><h2>Practical experience, backed by curiosity.</h2></div><div><p>I'm a physical security technician transitioning further into IT infrastructure and networking. My work involves installing and troubleshooting network-connected camera, access control, and related systems. In my own time, I build and maintain a home lab to deepen my understanding of the technologies behind those systems.</p><p>Before entering this field, I served in the U.S. Marine Corps as an Air Electronics Operator / Data Link Coordinator. Today I'm building on that technical foundation with hands-on labs, self-hosted services, and Cisco networking studies.</p><div class="credentials"><span class="credential">CompTIA Network+</span><span class="credential">CCNA — Studying</span><span class="credential">Linux / Home Lab</span><span class="credential">U.S. Marine Corps Veteran</span></div></div></div></section>
+
+    <section class="section" id="contact"><div class="container"><div class="contact"><div><span class="eyebrow">LET'S CONNECT</span><h2>Interested in my work?</h2><p>I'm interested in networking, infrastructure, and systems opportunities where I can keep learning and contributing. Visit my GitHub profile to see upcoming project documentation.</p></div><a class="button button-primary" href="https://github.com/Yub3rMen">View GitHub <span aria-hidden="true">↗</span></a></div><div class="editor-note"><strong>Before sharing this site:</strong> Replace IT & Networking and , add a contact link, and review project descriptions. See README.md for publishing instructions. Remove this yellow note once you finish editing.</div></div></section>
+  </main>
+  <footer><div class="container footer-content"><span>© <span id="year">2026</span> IT & Networking · IT &amp; Networking Portfolio</span><span>Built with HTML &amp; CSS · Hosted on GitHub Pages (when published)</span></div></footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
